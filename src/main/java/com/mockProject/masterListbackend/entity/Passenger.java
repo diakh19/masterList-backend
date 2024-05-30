@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
+
 
 @Getter
 @Setter
@@ -45,7 +45,7 @@ public class Passenger {
     private String food;
 
     @Column(name="Senior Citizen")
-    private boolean isSeniorCitizen;
+    private boolean seniorCitizen;
 
     @Column(name = "DOB")
     private LocalDate dob;
