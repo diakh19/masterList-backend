@@ -16,7 +16,6 @@ public class PassengerMapper {
                 passenger.getIdType(),
                 passenger.getIdNumber(),
                 passenger.getFood(),
-                passenger.isSeniorCitizen(),
                 passenger.getDob()
 
         );
@@ -33,7 +32,6 @@ public class PassengerMapper {
                 passengerDto.getIdType(),
                 passengerDto.getIdNumber(),
                 passengerDto.getFood(),
-                passengerDto.isSeniorCitizen(),
                 passengerDto.getDOB()
 
         );

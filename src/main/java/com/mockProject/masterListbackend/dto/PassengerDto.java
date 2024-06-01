@@ -41,7 +41,7 @@ public class PassengerDto {
     private String Food;
 
 
-    private boolean seniorCitizen;
+
 
 
     private LocalDate DOB;

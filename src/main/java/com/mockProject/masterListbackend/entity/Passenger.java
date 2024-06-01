@@ -44,8 +44,7 @@ public class Passenger {
     @Column(name = "Food choice")
     private String food;
 
-    @Column(name="Senior Citizen")
-    private boolean seniorCitizen;
+
 
     @Column(name = "DOB")
     private LocalDate dob;

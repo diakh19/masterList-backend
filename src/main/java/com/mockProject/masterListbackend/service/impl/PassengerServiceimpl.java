@@ -52,8 +52,6 @@ public class PassengerServiceimpl implements PassengerService {
         passenger.setGender(updatedPassenger.getGender());
         passenger.setIdType(updatedPassenger.getIdType());
         passenger.setIdNumber(updatedPassenger.getIdNumber());
-        passenger.setSeniorCitizen(updatedPassenger.isSeniorCitizen());
-
         Passenger updatedPassengerObj=passengerRepository.save(passenger);
         return PassengerMapper.mapToPassengerDto(updatedPassengerObj);
     }
