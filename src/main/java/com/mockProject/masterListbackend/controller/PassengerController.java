@@ -2,6 +2,7 @@ package com.mockProject.masterListbackend.controller;
 
 import com.mockProject.masterListbackend.dto.PassengerDto;
 import com.mockProject.masterListbackend.service.PassengerService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -19,7 +20,7 @@ public class PassengerController {
 
     //build add passenger REST API
   @PostMapping
-    public ResponseEntity<PassengerDto> createPassenger(@RequestBody PassengerDto passengerDto)
+    public ResponseEntity<PassengerDto> createPassenger(@Valid @RequestBody PassengerDto passengerDto)
     {
         PassengerDto savedPassenger=passengerService.createPassenger(passengerDto);
         return new ResponseEntity<>(savedPassenger, HttpStatus.CREATED);
@@ -41,7 +42,7 @@ public class PassengerController {
 
     //Build update Employee REST API
     @PutMapping("{id}")
-    public ResponseEntity<PassengerDto> updatePassenger(@PathVariable("id") Long passengerId,@RequestBody PassengerDto updatedPassenger)
+    public ResponseEntity<PassengerDto> updatePassenger(@PathVariable("id") Long passengerId,@Valid @RequestBody PassengerDto updatedPassenger)
     {
         PassengerDto p= passengerService.updatePassenger(passengerId,updatedPassenger);
         return  ResponseEntity.ok(p);
