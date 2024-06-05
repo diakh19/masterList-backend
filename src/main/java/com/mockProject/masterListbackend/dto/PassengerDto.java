@@ -25,7 +25,7 @@ public class PassengerDto {
     @NotBlank(message = "passenger Type is mandatory")
     private String passengerType;
 
-    @NotBlank(message = "Name is mandatory")
+//    @NotBlank(message = "Name is mandatory")
     @Size(min=2,max=25,message="Name length should be between 2 and 25.")
     private String fullName;
 
