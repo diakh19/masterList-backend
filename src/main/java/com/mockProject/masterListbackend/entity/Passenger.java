@@ -21,7 +21,7 @@ public class Passenger {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "PassengerType",nullable = false)
+    @Column(name = "Passenger_type",nullable = false)
     private String passengerType;
 
     @Column(name="full_name",nullable = false)
@@ -31,26 +31,20 @@ public class Passenger {
     @Column(name = "Gender",nullable = false)
     private String gender;
 
-    @Column(name = "Berth Preference",nullable = false)
+    @Column(name = "Berth_preference",nullable = false)
     private String berth;
 
-    @Column(name = "ID type",nullable = false)
+    @Column(name = "Id_type",nullable = false)
     private String idType;
 
-    @Column(name="ID no.",nullable = false)
+    @Column(name="Id_no.",nullable = false)
     private String idNumber;
 
-    @Column(name = "Food choice",nullable = false)
+    @Column(name = "Food_choice",nullable = false)
     private String food;
 
-    @Column(name = "DOB",nullable = false)
+    @Column(name = "Dob",nullable = false)
     private LocalDate dob;
-
-
-
-
-
-
 
 
 }
