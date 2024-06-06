@@ -7,6 +7,8 @@ import com.mockProject.masterListbackend.mapper.PassengerMapper;
 import com.mockProject.masterListbackend.repository.PassengerRepository;
 import com.mockProject.masterListbackend.service.PassengerService;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,28 +16,32 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
+
+
 public class PassengerServiceimpl implements PassengerService {
 
  private PassengerRepository passengerRepository;
+
+ @Autowired
+ private ModelMapper mapper;
     @Override
     public PassengerDto createPassenger(PassengerDto passengerDto) {
-
-        Passenger p= PassengerMapper.mapToPassenger(passengerDto);
+        Passenger p= this.mapper.map(passengerDto,Passenger.class);
         Passenger savedPassenger=passengerRepository.save(p);
-        return PassengerMapper.mapToPassengerDto(savedPassenger);
+        return mapper.map(savedPassenger,PassengerDto.class);
     }
 
     @Override
     public PassengerDto getPassengerById(Long passengerId) {
         Passenger passenger=passengerRepository.findById(passengerId).orElseThrow(()-> new ResourceNotFoundException("Passenger with given id does not exist:"+ passengerId));
-        return PassengerMapper.mapToPassengerDto(passenger);
+        return mapper.map(passenger,PassengerDto.class);
 
     }
 
     @Override
     public List<PassengerDto> getAllPassengers() {
         List<Passenger> passengers=passengerRepository.findAll();
-        return passengers.stream().map((passenger)-> PassengerMapper.mapToPassengerDto(passenger)).collect(Collectors.toList());
+        return passengers.stream().map((passenger)-> mapper.map(passenger,PassengerDto.class)).collect(Collectors.toList());
     }
 
     @Override
@@ -53,7 +59,7 @@ public class PassengerServiceimpl implements PassengerService {
         passenger.setIdType(updatedPassenger.getIdType());
         passenger.setIdNumber(updatedPassenger.getIdNumber());
         Passenger updatedPassengerObj=passengerRepository.save(passenger);
-        return PassengerMapper.mapToPassengerDto(updatedPassengerObj);
+        return mapper.map(updatedPassengerObj,PassengerDto.class);
     }
 
     @Override
