@@ -3,7 +3,7 @@ package com.mockProject.masterListbackend.service.impl;
 import com.mockProject.masterListbackend.dto.PassengerDto;
 import com.mockProject.masterListbackend.entity.Passenger;
 import com.mockProject.masterListbackend.exception.ResourceNotFoundException;
-import com.mockProject.masterListbackend.mapper.PassengerMapper;
+
 import com.mockProject.masterListbackend.repository.PassengerRepository;
 import com.mockProject.masterListbackend.service.PassengerService;
 import lombok.AllArgsConstructor;
@@ -50,7 +50,6 @@ public class PassengerServiceimpl implements PassengerService {
 
         passenger.setId(passengerId);
         passenger.setPassengerType(updatedPassenger.getPassengerType());
-
         passenger.setFood(updatedPassenger.getFood());
         passenger.setDob(updatedPassenger.getDOB());
         passenger.setBerth(updatedPassenger.getBerth());
