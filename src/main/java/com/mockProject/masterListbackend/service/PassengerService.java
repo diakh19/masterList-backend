@@ -1,19 +1,23 @@
 package com.mockProject.masterListbackend.service;
 
-import com.mockProject.masterListbackend.dto.PassengerDto;
+import com.mockProject.masterListbackend.dto.RequestDto;
+import com.mockProject.masterListbackend.dto.ResponseDto;
 
 import java.util.List;
 
 public interface PassengerService {
 
-    PassengerDto createPassenger(PassengerDto passengerDto);
+    ResponseDto createPassenger(RequestDto requestDto);
 
-    PassengerDto getPassengerById(Long passengerId);
 
-    List<PassengerDto> getAllPassengers();
+    ResponseDto getPassengerById(Long passengerId);
 
-    PassengerDto updatePassenger(Long passengerId,PassengerDto updatedPassenger);
+    List<ResponseDto> getAllPassengers();
+
+    ResponseDto updatePassenger(Long passengerId, RequestDto updatedPassenger);
+
 
     void deletePassenger(Long passengerId);
+
 
 }
