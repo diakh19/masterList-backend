@@ -1,15 +1,20 @@
 package com.mockProject.masterListbackend.controller;
 
-import com.mockProject.masterListbackend.dto.PassengerDto;
+import com.mockProject.masterListbackend.dto.RequestDto;
+import com.mockProject.masterListbackend.dto.ResponseDto;
 import com.mockProject.masterListbackend.service.PassengerService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
@@ -20,31 +25,41 @@ public class PassengerController {
 
     //build add passenger REST API
   @PostMapping
-    public ResponseEntity<PassengerDto> createPassenger(@Valid @RequestBody PassengerDto passengerDto)
+    public ResponseEntity<?> createPassenger(@Valid @RequestBody RequestDto requestDto,BindingResult bindingResult)
     {
-        PassengerDto savedPassenger=passengerService.createPassenger(passengerDto);
+
+        if(bindingResult.hasErrors()){
+            Map<String,String> errors=new HashMap<>();
+            for(FieldError error:bindingResult.getFieldErrors()){
+                errors.put(error.getField(),error.getDefaultMessage());
+            }
+            return ResponseEntity.badRequest().body(errors);
+        }
+
+        ResponseDto savedPassenger=passengerService.createPassenger(requestDto);
         return new ResponseEntity<>(savedPassenger, HttpStatus.CREATED);
+
     }
 
     //Build get Passenger REST API
     @GetMapping("{id}")
-    public ResponseEntity<PassengerDto> getPassengerById(@PathVariable("id") Long passengerId){
-      PassengerDto passengerDto=passengerService.getPassengerById(passengerId);
-      return ResponseEntity.ok(passengerDto);
+    public ResponseEntity<ResponseDto> getPassengerById(@PathVariable("id") Long passengerId){
+      ResponseDto responseDto =passengerService.getPassengerById(passengerId);
+      return ResponseEntity.ok(responseDto);
     }
 
     //Build Get All Passengers REST API
     @GetMapping
-    public ResponseEntity<List<PassengerDto>> getAllPassengers(){
-      List<PassengerDto> passengerDtoList= passengerService.getAllPassengers();
-      return ResponseEntity.ok(passengerDtoList);
+    public ResponseEntity<List<ResponseDto>> getAllPassengers(){
+      List<ResponseDto> responseDtoList = passengerService.getAllPassengers();
+      return ResponseEntity.ok(responseDtoList);
     }
 
     //Build update Employee REST API
     @PutMapping("{id}")
-    public ResponseEntity<PassengerDto> updatePassenger(@PathVariable("id") Long passengerId,@Valid @RequestBody PassengerDto updatedPassenger)
+    public ResponseEntity<ResponseDto> updatePassenger(@PathVariable("id") Long passengerId, @Valid @RequestBody RequestDto updatedPassenger)
     {
-        PassengerDto p= passengerService.updatePassenger(passengerId,updatedPassenger);
+        ResponseDto p= passengerService.updatePassenger(passengerId,updatedPassenger);
         return  ResponseEntity.ok(p);
     }
 
