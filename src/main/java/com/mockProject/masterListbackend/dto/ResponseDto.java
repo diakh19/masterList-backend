@@ -1,8 +1,15 @@
 package com.mockProject.masterListbackend.dto;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.mockProject.masterListbackend.CustomDeserializer.BerthDeserializer;
+import com.mockProject.masterListbackend.CustomDeserializer.FoodDeserializer;
+import com.mockProject.masterListbackend.CustomDeserializer.PassengerTypeDeserializer;
+import com.mockProject.masterListbackend.CustomSerializer.BerthSerializer;
+import com.mockProject.masterListbackend.CustomSerializer.FoodSerializer;
+import com.mockProject.masterListbackend.CustomSerializer.PassengerTypeSerializer;
 import com.mockProject.masterListbackend.Enum.*;
-import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
@@ -13,7 +20,6 @@ import lombok.*;
 
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -21,12 +27,14 @@ import java.util.Date;
 @AllArgsConstructor
 
 @Data
-public class PassengerDto {
+public class ResponseDto {
 
     private Long id;
 
 //    @NotBlank(message = "passenger Type is mandatory")
     @Enumerated(EnumType.STRING)
+    @JsonSerialize(using = PassengerTypeSerializer.class)
+    @JsonDeserialize(using = PassengerTypeDeserializer.class)
     private PassengerType passengerType;
 
 //    @NotBlank(message = "Name is mandatory")
@@ -40,6 +48,8 @@ public class PassengerDto {
 
 //    @NotBlank(message = "Berth preference is mandatory")
     @Enumerated(EnumType.STRING)
+    @JsonSerialize(using = BerthSerializer.class)
+    @JsonDeserialize(using = BerthDeserializer.class)
     private  Berth berth;
 
 
@@ -53,6 +63,8 @@ public class PassengerDto {
 
 //    @NotBlank(message = "Food choice  is mandatory")
     @Enumerated(EnumType.STRING)
+    @JsonSerialize(using = FoodSerializer.class)
+    @JsonDeserialize(using = FoodDeserializer.class)
     private Food food;
 
 
