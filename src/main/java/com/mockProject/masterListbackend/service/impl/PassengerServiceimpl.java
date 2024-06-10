@@ -58,7 +58,7 @@ public class PassengerServiceimpl implements PassengerService {
     }
 
     @Override
-    public ResponseDto updatePassenger(Long passengerId, RequestDto updatedPassenger) {
+    public ResponseDto updatePassenger(Long passengerId, ResponseDto updatedPassenger) {
         Passenger passenger=passengerRepository.findById(passengerId).orElseThrow(()-> new ResourceNotFoundException("Passenger with given id does not exist:"+ passengerId));
 
         String idNumber=updatedPassenger.getIdNumber();
