@@ -14,7 +14,7 @@ public interface PassengerService {
 
     List<ResponseDto> getAllPassengers();
 
-    ResponseDto updatePassenger(Long passengerId, RequestDto updatedPassenger);
+    ResponseDto updatePassenger(Long passengerId, ResponseDto updatedPassenger);
 
 
     void deletePassenger(Long passengerId);

@@ -18,7 +18,7 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDate;
-import com.mockProject.masterListbackend.CustomValidation.NoId;
+
 
 @Getter
 @Setter
@@ -26,11 +26,8 @@ import com.mockProject.masterListbackend.CustomValidation.NoId;
 @AllArgsConstructor
 
 @Data
-@NoId(message="ID field should not be present in the request")
+
 public class RequestDto {
-
-
-     private Long id;
 
     //    @NotBlank(message = "passenger Type is mandatory")
     @Enumerated(EnumType.STRING)
